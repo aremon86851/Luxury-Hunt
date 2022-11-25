@@ -15,7 +15,7 @@ const Header = () => {
         <li><Link to="">Home</Link></li>
         <li><Link to="">Blog</Link></li>
         {
-            user?.uid ? <button className='btn text-white' onClick={handleLogOut}><li><Link to="">Logout</Link></li></button> : <li><Link to="/login">Login</Link></li>
+            user?.uid ? <li><button className='btn text-white' onClick={handleLogOut}>Logout</button></li> : <li><Link to="/login">Login</Link></li>
         }
     </React.Fragment>
     return (

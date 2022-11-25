@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car, setCarData }) => {
     const { user } = useContext(AuthProvider)
-    console.log(car)
     const { categoryName, location, name, resalePrice, picture, salerName, _id } = car
     return (
         <div className="card bg-base-100 shadow-xl">
@@ -18,7 +17,7 @@ const CarCard = ({ car }) => {
                     {
                         user?.uid ? <>
                             <div className="mt-5">
-                                <label htmlFor="car-modal" className="btn btn-primary text-white">Book Now</label>
+                                <label onClick={() => setCarData(car)} htmlFor="car-modal" className="btn btn-primary text-white">Book Now</label>
                             </div>
                         </> : <>
                             <p className='text-center italic mt-5 text-red-500'>For purchase please <Link to="/login" className='text-blue-600'>login</Link> first</p>
