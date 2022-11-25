@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bannerBg from '../../../assests/banner/banner-bg.jpg'
-import SignUp from './SignUp/SignUp';
+import SignUp from './BannerSignUp/BannerSignUp';
 
 const Banner = () => {
     return (

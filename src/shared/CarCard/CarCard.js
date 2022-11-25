@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthProvider } from '../../AuthContext/AuthContext';
 
 const CarCard = ({ car }) => {
+    const { user } = useContext(AuthProvider)
     console.log(car)
     const { categoryName, location, name, resalePrice, picture, salerName, _id } = car
     return (
@@ -12,9 +15,15 @@ const CarCard = ({ car }) => {
                 <div>
                     <p className=''><span className='font-bold'>Seller Name :</span> <span className='italic'>{salerName}</span> </p>
                     <p><span className='font-bold'>Location : </span><span>{location}</span></p>
-                    <div className="mt-5">
-                        <button className="btn btn-primary text-white">Buy Now</button>
-                    </div>
+                    {
+                        user?.uid ? <>
+                            <div className="mt-5">
+                                <label htmlFor="car-modal" className="btn btn-primary text-white">Book Now</label>
+                            </div>
+                        </> : <>
+                            <p className='text-center italic mt-5 text-red-500'>For purchase please <Link to="/login" className='text-blue-600'>login</Link> first</p>
+                        </>
+                    }
                 </div>
             </div>
         </div>

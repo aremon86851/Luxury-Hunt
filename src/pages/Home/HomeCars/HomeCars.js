@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import BookModal from '../../../shared/BookModal/BookModal';
 import CarCard from '../../../shared/CarCard/CarCard';
 import Loading from '../../../shared/Loading/Loading';
 
 const HomeCars = () => {
+    const [] = useState()
     const { data: allCar, isLoading } = useQuery({
         queryKey: ['homecar'],
         queryFn: () => fetch('http://localhost:5000/homecar')
@@ -20,6 +22,7 @@ const HomeCars = () => {
                     allCar.map(car => <CarCard key={car._id} car={car}></CarCard>)
                 }
             </div>
+            <BookModal></BookModal>
         </div>
     );
 };
