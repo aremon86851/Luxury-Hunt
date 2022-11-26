@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import userCollectionFetch from "./userCollectionFetch";
 
 const handleSignUp = (name, email, password, picture, userRole, createUser, userProfile, imgbbApi) => {
 
@@ -29,20 +30,7 @@ const handleSignUp = (name, email, password, picture, userRole, createUser, user
                         profile: imageUrl,
                         role: userRole
                     }
-                    fetch('http://localhost:5000/userCollection', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(userInfo)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
-                            if (data.acknowledged) {
-                                toast.success('Now you are our member!')
-                            }
-                        })
+                    userCollectionFetch(userInfo)
                 })
         })
         .catch(err => console.error(err))

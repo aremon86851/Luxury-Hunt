@@ -6,9 +6,9 @@ import { AuthProvider } from '../../AuthContext/AuthContext';
 
 const BookModal = ({ carData, setCarData }) => {
     const { user } = useContext(AuthProvider)
-    const { name, resalePrice } = carData;
+    const { name, resalePrice, postDate } = carData;
     const { displayName, email } = user
-
+    const date = (new Date()).toString().split(' ').splice(1, 3).join(' ')
     // If want category name then want 
     // If you want use input but doing hidden that
 

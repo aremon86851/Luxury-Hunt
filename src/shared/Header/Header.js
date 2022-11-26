@@ -1,19 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCar } from 'react-icons/fa';
 import { AuthProvider } from '../../AuthContext/AuthContext';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../Loading/Loading'
 
 const Header = () => {
     const { user, logOut } = useContext(AuthProvider)
+    // const [roleUser, setRoleUser] = useState(null)
+    const { data: roleUser } = useQuery({
+        queryKey: ['', user?.email],
+        queryFn: () => fetch(`http://localhost:5000/role?email=${user?.email}`)
+            .then(res => res.json())
+    })
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+            })
             .catch(err => console.error(err))
     }
 
     const menus = <React.Fragment>
         <li><Link to="">Home</Link></li>
         <li><Link to="">Blog</Link></li>
+        {
+            roleUser?.role === 'Seller' && <>
+                <li><Link to="/addaproduct">Add a Product</Link></li>
+                <li><Link to="/myproduct">My Product</Link></li>
+                <li><Link to="/mybuyer">My Buyer</Link></li>
+            </>
+        }
+        {
+            roleUser?.role === "Buyer" && <>
+                <li><Link to="/myorder">My Order</Link></li>
+                <li><Link to="/mywishlist">My Wishlist</Link></li>
+            </>
+        }
+        {
+            roleUser?.role === "Admin" && <>
+                <li><Link to="/myorder">All Seller</Link></li>
+                <li><Link to="/myorder">All User</Link></li>
+                <li><Link to="/myorder">Reported Items</Link></li>
+            </>
+        }
         {
             user?.uid ? <li><button className='btn text-white' onClick={handleLogOut}>Logout</button></li> : <li><Link to="/login">Login</Link></li>
         }

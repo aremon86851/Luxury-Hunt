@@ -6,6 +6,11 @@ import CategoryInfo from "../../pages/Home/Category/CategoryInfo/CategoryInfo";
 import CategoryCar from "../../pages/CategoryCar/CategoryCar";
 import SignUp from "../../pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AddaProduct from "../../pages/AddaProduct/AddaProduct";
+import MyProduct from "../../pages/MyProduct/MyProduct";
+import MyBuyer from "../../pages/MyBuyer/MyBuyer";
+import MyOrder from "../../pages/MyOrder/MyOrder";
+import MyWishlist from "../../pages/MyWishlist/MyWishlist";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +37,26 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/addaproduct',
+                element: <AddaProduct></AddaProduct>
+            },
+            {
+                path: '/myproduct',
+                element: <MyProduct></MyProduct>
+            },
+            {
+                path: '/mybuyer',
+                element: <MyBuyer></MyBuyer>
+            },
+            {
+                path: '/myorder',
+                element: <MyOrder></MyOrder>
+            },
+            {
+                path: '/mywishlist',
+                element: <MyWishlist></MyWishlist>
             }
         ]
     }
