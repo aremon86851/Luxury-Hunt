@@ -11,6 +11,7 @@ import MyProduct from "../../pages/MyProduct/MyProduct";
 import MyBuyer from "../../pages/MyBuyer/MyBuyer";
 import MyOrder from "../../pages/MyOrder/MyOrder";
 import MyWishlist from "../../pages/MyWishlist/MyWishlist";
+import Dashboard from "../../layout/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -37,25 +38,35 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
-            },
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
             {
-                path: '/addaproduct',
-                element: <AddaProduct></AddaProduct>
-            },
-            {
-                path: '/myproduct',
-                element: <MyProduct></MyProduct>
-            },
-            {
-                path: '/mybuyer',
-                element: <MyBuyer></MyBuyer>
-            },
-            {
-                path: '/myorder',
+                path: '/dashboard',
                 element: <MyOrder></MyOrder>
             },
             {
-                path: '/mywishlist',
+                path: '/dashboard/myorder',
+                element: <MyOrder></MyOrder>
+            },
+            {
+                path: '/dashboard/addaproduct',
+                element: <AddaProduct></AddaProduct>
+            },
+            {
+                path: '/dashboard/myproduct',
+                element: <MyProduct></MyProduct>
+            },
+            {
+                path: '/dashboard/mybuyer',
+                element: <MyBuyer></MyBuyer>
+            },
+            {
+                path: '/dashboard/mywishlist',
                 element: <MyWishlist></MyWishlist>
             }
         ]

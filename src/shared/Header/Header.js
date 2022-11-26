@@ -8,11 +8,6 @@ import Loading from '../Loading/Loading'
 const Header = () => {
     const { user, logOut } = useContext(AuthProvider)
     // const [roleUser, setRoleUser] = useState(null)
-    const { data: roleUser } = useQuery({
-        queryKey: ['', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/role?email=${user?.email}`)
-            .then(res => res.json())
-    })
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -21,30 +16,13 @@ const Header = () => {
     }
 
     const menus = <React.Fragment>
-        <li><Link to="">Home</Link></li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="">Blog</Link></li>
         {
-            roleUser?.role === 'Seller' && <>
-                <li><Link to="/addaproduct">Add a Product</Link></li>
-                <li><Link to="/myproduct">My Product</Link></li>
-                <li><Link to="/mybuyer">My Buyer</Link></li>
-            </>
-        }
-        {
-            roleUser?.role === "Buyer" && <>
-                <li><Link to="/myorder">My Order</Link></li>
-                <li><Link to="/mywishlist">My Wishlist</Link></li>
-            </>
-        }
-        {
-            roleUser?.role === "Admin" && <>
-                <li><Link to="/myorder">All Seller</Link></li>
-                <li><Link to="/myorder">All User</Link></li>
-                <li><Link to="/myorder">Reported Items</Link></li>
-            </>
-        }
-        {
-            user?.uid ? <li><button className='btn text-white' onClick={handleLogOut}>Logout</button></li> : <li><Link to="/login">Login</Link></li>
+            user?.uid ? <>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><button className='btn text-white' onClick={handleLogOut}>Logout</button></li>
+            </> : <li><Link to="/login">Login</Link></li>
         }
     </React.Fragment>
     return (
@@ -58,7 +36,7 @@ const Header = () => {
                         {menus}
                     </ul>
                 </div>
-                <Link to="" className="btn btn-ghost normal-case text-3xl font-bold"><span className='mr-1'>Luxury</span> <span className='mr-2'><FaCar className='text-4xl' /></span> <span className='text-red-600'>Hunt</span></Link>
+                <Link to="/" className="btn btn-ghost normal-case text-3xl font-bold"><span className='mr-1'>Luxury</span> <span className='mr-2'><FaCar className='text-4xl' /></span> <span className='text-red-600'>Hunt</span></Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
