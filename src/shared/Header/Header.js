@@ -38,10 +38,16 @@ const Header = () => {
                 </div>
                 <Link to="/" className="btn btn-ghost normal-case text-3xl font-bold"><span className='mr-1'>Luxury</span> <span className='mr-2'><FaCar className='text-4xl' /></span> <span className='text-red-600'>Hunt</span></Link>
             </div>
-            <div className="navbar-end hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
-                    {menus}
-                </ul>
+            <div className='navbar-end'>
+                <div className="hidden lg:flex">
+                    <ul className="menu menu-horizontal p-0">
+                        {menus}
+                    </ul>
+
+                </div>
+                <label htmlFor="dashboard-drawers" className="btn btn-primary drawer-button text-right lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
             </div>
         </div>
     );

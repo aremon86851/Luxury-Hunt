@@ -6,7 +6,7 @@ import { AuthProvider } from '../../AuthContext/AuthContext';
 
 const BookModal = ({ carData, setCarData }) => {
     const { user } = useContext(AuthProvider)
-    const { name, resalePrice, postDate } = carData;
+    const { name, resalePrice, postDate, picture, originalPrice, _id } = carData;
     const { displayName, email } = user
     const date = (new Date()).toString().split(' ').splice(1, 3).join(' ')
     // If want category name then want 
@@ -14,12 +14,24 @@ const BookModal = ({ carData, setCarData }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
+        const modalData = {
+            address: data.address,
+            carName: data.carName,
+            carPrice: data.carPrice,
+            email: data.email,
+            name: data.name,
+            number: data.number,
+            bookedCarId: _id,
+            picture: picture,
+            bookedDate: date
+
+        }
         fetch('http://localhost:5000/allBooking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(modalData)
         })
             .then(res => res.json())
             .then(data => {
