@@ -1,10 +1,44 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { AuthProvider } from '../../AuthContext/AuthContext';
+import Loading from '../../shared/Loading/Loading';
+import MyProductRow from './MyProductRow/MyProductRow';
 
 const MyProduct = () => {
+    const { user } = useContext(AuthProvider)
+
+    const { data: myProdcuts, isLoading } = useQuery({
+        queryKey: ['myProdcuts', user?.email],
+        queryFn: () => fetch(`http://localhost:5000/sellerProduct?email=${user?.email}`)
+            .then(res => res.json())
+    })
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+
     return (
-        <div>
-            This is my Product
-        </div>
+        <div className="overflow-x-auto">
+            <table className="table w-full">
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>Image</th>
+                        <th>Car Name</th>
+                        <th>Price</th>
+                        <th>Available</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        myProdcuts.map((product, i) => <MyProductRow key={i} product={product} i={i}></MyProductRow>)
+                    }
+
+                </tbody>
+            </table>
+        </div >
     );
 };
 

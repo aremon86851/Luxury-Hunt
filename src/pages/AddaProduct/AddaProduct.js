@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 import Loading from '../../shared/Loading/Loading';
@@ -8,8 +9,9 @@ import Loading from '../../shared/Loading/Loading';
 const AddaProduct = () => {
     const { user } = useContext(AuthProvider)
     const imgbbApi = process.env.REACT_APP_imgbb_apiKey;
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const date = (new Date()).toString().split(' ').splice(1, 3).join(' ')
+
 
     const userName = user?.displayName;
     const userEmail = user?.email;
@@ -24,8 +26,9 @@ const AddaProduct = () => {
         return <Loading></Loading>
     }
 
+
+
     const handleAddProduct = data => {
-        console.log(data)
         const picture = data.image[0]
         const formData = new FormData();
         formData.append('image', picture)
@@ -51,7 +54,6 @@ const AddaProduct = () => {
                     description: data.description,
                     categoryId: data.categoryId
                 }
-                console.log(usedCarData)
                 fetch('http://localhost:5000/usedCar', {
                     method: 'POST',
                     headers: {
@@ -60,22 +62,19 @@ const AddaProduct = () => {
                     body: JSON.stringify(usedCarData)
                 })
                     .then(res => res.json())
-                    .then(data => console.log(data))
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast.success("Product Added successfully!")
+                            reset()
+                        }
+                    })
 
             })
-        // const name = data.fullName;
-        // const email = data.email
-        // const password = data.password;
-        // const picture = data.image[0]
-        // const userRole = data.role;
-
-
-
     };
     return (
         <div className="hero min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-5">
                     <form onSubmit={handleSubmit(handleAddProduct)} className="mx-10">
                         <div className="form-control w-full max-w-xl">
                             <label className="label">
@@ -159,7 +158,6 @@ const AddaProduct = () => {
                                 <span className="label-text text-black">Category</span>
                             </label>
                             <select {...register("categoryId", { required: true })} className="select w-full  text-black mt-2 max-w-xl border border-gray-500">
-                                <option disabled selected>Please select your category</option>
                                 {
                                     categories.map(category => <>
                                         <option value={category._id}>{category.categoryName}</option>
@@ -170,7 +168,7 @@ const AddaProduct = () => {
                         {/* include validation with required or other standard HTML validation rules */}
                         {/* errors will return when field validation fails  */}
                         {errors.exampleRequired && <span>This field is required</span>}
-                        <input className='btn btn-primary w-full mb-2 mt-5 text-white max-w-xl' type="submit" value='Signup' />
+                        <input className='btn btn-primary w-full mb-2 mt-5 text-white max-w-xl' type="submit" value='Add A Product' />
                     </form>
                 </div>
             </div>
