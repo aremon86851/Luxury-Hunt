@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 import Loading from '../../shared/Loading/Loading';
 import MyProductRow from './MyProductRow/MyProductRow';
 
 const MyProduct = () => {
     const { user } = useContext(AuthProvider)
-
-    const { data: myProdcuts, isLoading } = useQuery({
+    const { data: myProdcuts, isLoading, refetch } = useQuery({
         queryKey: ['myProdcuts', user?.email],
         queryFn: () => fetch(`http://localhost:5000/sellerProduct?email=${user?.email}`)
             .then(res => res.json())
@@ -33,7 +32,7 @@ const MyProduct = () => {
                 </thead>
                 <tbody>
                     {
-                        myProdcuts.map((product, i) => <MyProductRow key={i} product={product} i={i}></MyProductRow>)
+                        myProdcuts.map((product, i) => <MyProductRow key={i} refetch={refetch} product={product} i={i}></MyProductRow>)
                     }
 
                 </tbody>

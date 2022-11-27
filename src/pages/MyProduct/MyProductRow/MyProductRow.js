@@ -1,8 +1,18 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const MyProductRow = ({ product, i }) => {
-    console.log(product)
-    const { picture, name, resalePrice, } = product
+const MyProductRow = ({ product, i, refetch }) => {
+    const { picture, name, resalePrice, _id } = product;
+    const handleDelete = id => {
+        fetch(`http://localhost:5000/sellerProductDelete/${_id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Your item deleted successfully!')
+                refetch()
+            })
+    }
     return (
         <tr>
             <th>{i + 1}</th>
@@ -16,7 +26,7 @@ const MyProductRow = ({ product, i }) => {
             <td>{name}</td>
             <td>${resalePrice}</td>
             <td><button className="btn btn-sm">Available</button></td>
-            <td><button className="btn btn-sm">DELETE</button></td>
+            <td><button onClick={() => handleDelete(_id)} className="btn btn-sm">DELETE</button></td>
         </tr>
     );
 };
