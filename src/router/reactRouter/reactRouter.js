@@ -46,10 +46,6 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
-                path: '/dashboard',
-                element: <MyOrder></MyOrder>
-            },
-            {
                 path: '/dashboard/myorder',
                 element: <MyOrder></MyOrder>
             },
@@ -64,10 +60,6 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/mybuyer',
                 element: <MyBuyer></MyBuyer>
-            },
-            {
-                path: '/dashboard/mywishlist',
-                element: <MyWishlist></MyWishlist>
             }
         ]
     }

@@ -8,7 +8,7 @@ const CategoryCar = () => {
     const allCars = useLoaderData()
     return (
         <div>
-            <div className='grid grid-cols-3 gap-10 my-10'>
+            <div className='grid grid-cols-3 gap-10 my-10 mx-10'>
                 {
                     allCars.map(car => <CarCard key={car._id} car={car} setCarData={setCarData}></CarCard>)
                 }

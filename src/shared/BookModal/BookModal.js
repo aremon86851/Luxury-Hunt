@@ -45,7 +45,6 @@ const BookModal = ({ carData, setCarData }) => {
     };
     return (
         <div>
-            {/* Put this part before </body> tag */}
             <input type="checkbox" id="car-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
