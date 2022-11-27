@@ -34,7 +34,6 @@ const MyProduct = () => {
                     {
                         myProdcuts.map((product, i) => <MyProductRow key={i} refetch={refetch} product={product} i={i}></MyProductRow>)
                     }
-
                 </tbody>
             </table>
         </div >

@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyOrderCard = ({ order, i }) => {
     console.log(order)
-    const { carName, carPrice, email, picture, name } = order
+    const { carName, carPrice, email, picture, name, payment } = order
     return (
         <tr>
             <th>{i + 1}</th>
@@ -16,6 +16,9 @@ const MyOrderCard = ({ order, i }) => {
             <td>{carName}</td>
             <td>{carPrice}</td>
             <td>{email}</td>
+            <td>{
+                carPrice && payment === "pay" ? <button className="btn btn-sm">Pay</button> : 'Paid'
+            }</td>
         </tr>
     );
 };

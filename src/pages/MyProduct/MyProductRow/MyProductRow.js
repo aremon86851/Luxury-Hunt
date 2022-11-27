@@ -1,17 +1,22 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { handleDeleteRoute } from '../../../utilities/handleDeleteRoute';
 
 const MyProductRow = ({ product, i, refetch }) => {
     const { picture, name, resalePrice, _id } = product;
-    const handleDelete = id => {
-        fetch(`http://localhost:5000/sellerProductDelete/${_id}`, {
-            method: 'DELETE'
+    const handleAdvertise = id => {
+        fetch(`http://localhost:5000/advertiseItem/${_id}`, {
+            method: 'POST'
         })
             .then(res => res.json())
             .then(data => {
-                toast.success('Your item deleted successfully!')
-                refetch()
+                console.log(data)
+                toast.success('Item advertise successfully!')
             })
+    }
+    const handleDelete = id => {
+        handleDeleteRoute('sellerProductDelete', refetch, id)
+        handleDeleteRoute('advartiseItemDelete', refetch, id)
     }
     return (
         <tr>
@@ -25,7 +30,7 @@ const MyProductRow = ({ product, i, refetch }) => {
             </td>
             <td>{name}</td>
             <td>${resalePrice}</td>
-            <td><button className="btn btn-sm">Available</button></td>
+            <td><button onClick={() => handleAdvertise(_id)} className="btn btn-sm">Available</button></td>
             <td><button onClick={() => handleDelete(_id)} className="btn btn-sm">DELETE</button></td>
         </tr>
     );

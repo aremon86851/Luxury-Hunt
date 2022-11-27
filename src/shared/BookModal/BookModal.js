@@ -23,7 +23,8 @@ const BookModal = ({ carData, setCarData }) => {
             number: data.number,
             bookedCarId: _id,
             picture: picture,
-            bookedDate: date
+            bookedDate: date,
+            payment: 'pay'
 
         }
         fetch('http://localhost:5000/allBooking', {
