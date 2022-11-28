@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 
 const CarCard = ({ car, setCarData }) => {
     const { user } = useContext(AuthProvider)
-    const { categoryName, location, name, resalePrice, picture, salerName, _id } = car
+    const [disabled, setDisabled] = useState(false)
+    const { categoryName, location, name, resalePrice, picture, salerName, _id } = car;
+    const handleWishlist = id => {
+        fetch(`http://localhost:5000/wishlist/${id}`, {
+            method: 'POST'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    setDisabled(true)
+                    toast.success('Wish listed successfully!')
+                }
+            })
+    }
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><img src={picture} alt="Shoes" className='w-full h-72' /></figure>
@@ -17,10 +31,11 @@ const CarCard = ({ car, setCarData }) => {
                     {
                         user?.uid ? <>
                             <div className="mt-5">
-                                <label onClick={() => setCarData(car)} htmlFor="car-modal" className="btn btn-primary text-white">Book Now</label>
+                                <label onClick={() => setCarData(car)} htmlFor="car-modal" className="w-full btn btn-primary text-white mb-3">Book Now</label>
+                                <label onClick={() => handleWishlist(_id)} className="w-full btn btn-success text-white" disabled={disabled}>Wishlist</label>
                             </div>
                         </> : <>
-                            <p className='text-center italic mt-5 text-red-500'>For purchase please <Link to="/login" className='text-blue-600'>login</Link> first</p>
+                            <p className=' italic mt-5 text-red-500'>For purchase please <Link to="/login" className='text-blue-600'>login</Link> first</p>
                         </>
                     }
                 </div>

@@ -26,6 +26,7 @@ const Dashboard = () => {
         {
             roleUser?.role === "Buyer" && <>
                 <li><Link to="/dashboard/myorder">My Order</Link></li>
+                <li><Link to="/dashboard/mywishlist">My Wishlist</Link></li>
             </>
         }
         {
