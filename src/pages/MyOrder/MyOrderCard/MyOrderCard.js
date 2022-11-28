@@ -1,8 +1,8 @@
 import React from 'react';
 
-const MyOrderCard = ({ order, i }) => {
+const MyOrderCard = ({ order, i, setHandlePaymentId }) => {
     console.log(order)
-    const { carName, carPrice, email, picture, name, payment } = order
+    const { carName, carPrice, email, picture, name, payment, _id } = order
     return (
         <tr>
             <th>{i + 1}</th>
@@ -16,9 +16,11 @@ const MyOrderCard = ({ order, i }) => {
             <td>{carName}</td>
             <td>{carPrice}</td>
             <td>{email}</td>
+
             <td>{
-                carPrice && payment === "pay" ? <button className="btn btn-sm">Pay</button> : 'Paid'
-            }</td>
+                carPrice && payment === "pay" ? <label onClick={() => setHandlePaymentId(_id)} htmlFor="payment-modal" className="btn btn-sm">Pay</label> : 'Paid'
+            }
+            </td>
         </tr>
     );
 };

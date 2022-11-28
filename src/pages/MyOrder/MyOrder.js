@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 import Loading from '../../shared/Loading/Loading';
 import MyOrderCard from './MyOrderCard/MyOrderCard';
+import PaymentModal from './PaymentModal/PaymentModal';
 
 const MyOrder = () => {
-    const { user } = useContext(AuthProvider)
+    const [handlePaymentId, setHandlePaymentId] = useState(null)
+    console.log(handlePaymentId);
+    const { user } = useContext(AuthProvider);
     const { data: orders, isLoading } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: () => fetch(`http://localhost:5000/myorder?email=${user?.email}`)
@@ -32,11 +35,18 @@ const MyOrder = () => {
                     <tbody>
                         {
                             orders.map((order, i) => <>
-                                <MyOrderCard key={order._id} i={i} order={order}></MyOrderCard>
+                                <MyOrderCard key={order._id} i={i} order={order} setHandlePaymentId={setHandlePaymentId}></MyOrderCard>
                             </>)
                         }
                     </tbody>
                 </table>
+            </div>
+            <div>
+                {
+                    handlePaymentId && <>
+                        <PaymentModal handlePaymentId={handlePaymentId} setHandlePaymentId={setHandlePaymentId}></PaymentModal>
+                    </>
+                }
             </div>
         </div>
     );
