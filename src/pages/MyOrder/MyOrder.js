@@ -3,10 +3,11 @@ import React, { useContext, useState } from 'react';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 import Loading from '../../shared/Loading/Loading';
 import MyOrderCard from './MyOrderCard/MyOrderCard';
-import PaymentModal from './PaymentModal/PaymentModal';
+import PaymentPage from './PaymentPage/PaymentPage';
 
 const MyOrder = () => {
     const [handlePaymentId, setHandlePaymentId] = useState(null)
+
     console.log(handlePaymentId);
     const { user } = useContext(AuthProvider);
     const { data: orders, isLoading } = useQuery({
@@ -17,7 +18,6 @@ const MyOrder = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(orders)
     return (
         <div>
             <div className="overflow-x-auto">
@@ -42,11 +42,6 @@ const MyOrder = () => {
                 </table>
             </div>
             <div>
-                {
-                    handlePaymentId && <>
-                        <PaymentModal handlePaymentId={handlePaymentId} setHandlePaymentId={setHandlePaymentId}></PaymentModal>
-                    </>
-                }
             </div>
         </div>
     );

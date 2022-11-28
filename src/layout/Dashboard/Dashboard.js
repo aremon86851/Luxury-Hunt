@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthProvider } from '../../AuthContext/AuthContext';
-import Footer from '../../shared/Footer/Footer';
 import Header from '../../shared/Header/Header';
 import Loading from '../../shared/Loading/Loading';
 
@@ -31,9 +30,8 @@ const Dashboard = () => {
         }
         {
             roleUser?.role === "Admin" && <>
-                <li><Link to="/dashboard/myorder">All Seller</Link></li>
-                <li><Link to="/dashboard/myorder">All User</Link></li>
-                <li><Link to="/dashboard/myorder">Reported Items</Link></li>
+                <li><Link to="/dashboard/allSeller">All Seller</Link></li>
+                <li><Link to="/dashboard/allUser">All User</Link></li>
             </>
         }
     </React.Fragment>

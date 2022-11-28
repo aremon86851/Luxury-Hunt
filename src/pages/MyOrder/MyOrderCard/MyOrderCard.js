@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const MyOrderCard = ({ order, i, setHandlePaymentId }) => {
+const MyOrderCard = ({ order, i }) => {
     console.log(order)
     const { carName, carPrice, email, picture, name, payment, _id } = order
     return (
@@ -18,7 +19,7 @@ const MyOrderCard = ({ order, i, setHandlePaymentId }) => {
             <td>{email}</td>
 
             <td>{
-                carPrice && payment === "pay" ? <label onClick={() => setHandlePaymentId(_id)} htmlFor="payment-modal" className="btn btn-sm">Pay</label> : 'Paid'
+                carPrice && payment === "pay" ? <Link to={`/dashboard/payment/${_id}`}><button htmlFor="payment-modal" className="btn btn-sm">Pay</button></Link> : 'Paid'
             }
             </td>
         </tr>

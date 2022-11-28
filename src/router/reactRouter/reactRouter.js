@@ -12,6 +12,9 @@ import MyBuyer from "../../pages/MyBuyer/MyBuyer";
 import MyOrder from "../../pages/MyOrder/MyOrder";
 import MyWishlist from "../../pages/MyWishlist/MyWishlist";
 import Dashboard from "../../layout/Dashboard/Dashboard";
+import PaymentPage from "../../pages/MyOrder/PaymentPage/PaymentPage";
+import AllSeller from "../../pages/AllSeller/AllSeller";
+import AllUser from "../../pages/AllUser/AllUser";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +63,19 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/mybuyer',
                 element: <MyBuyer></MyBuyer>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <PaymentPage></PaymentPage>,
+                loader: ({ params }) => fetch(`http://localhost:5000/payment/${params.id}`)
+            },
+            {
+                path: '/dashboard/allSeller',
+                element: <AllSeller></AllSeller>
+            },
+            {
+                path: '/dashboard/allUser',
+                element: <AllUser></AllUser>
             }
         ]
     }
