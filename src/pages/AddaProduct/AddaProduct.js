@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../AuthContext/AuthContext';
 import Loading from '../../shared/Loading/Loading';
 
@@ -11,6 +11,7 @@ const AddaProduct = () => {
     const imgbbApi = process.env.REACT_APP_imgbb_apiKey;
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const date = (new Date()).toString().split(' ').splice(1, 3).join(' ')
+    const navigate = useNavigate()
 
 
     const userName = user?.displayName;
@@ -64,8 +65,9 @@ const AddaProduct = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.acknowledged) {
-                            toast.success("Product Added successfully!")
                             reset()
+                            navigate('/dashboard/myproduct')
+                            toast.success("Product Added successfully!")
                         }
                     })
 

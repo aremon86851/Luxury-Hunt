@@ -15,6 +15,7 @@ import Dashboard from "../../layout/Dashboard/Dashboard";
 import PaymentPage from "../../pages/MyOrder/PaymentPage/PaymentPage";
 import AllSeller from "../../pages/AllSeller/AllSeller";
 import AllUser from "../../pages/AllUser/AllUser";
+import Blog from "../../pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     },

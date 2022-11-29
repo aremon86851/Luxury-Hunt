@@ -6,7 +6,8 @@ import { AuthProvider } from '../../AuthContext/AuthContext';
 const CarCard = ({ car, setCarData }) => {
     const { user } = useContext(AuthProvider)
     const [disabled, setDisabled] = useState(false)
-    const { categoryName, location, name, resalePrice, picture, salerName, _id } = car;
+    const { postDate, location, name, resalePrice, picture, sellerName, _id, originalPrice, yearsOfUse, } = car;
+    console.log(car)
     const handleWishlist = id => {
         fetch(`http://localhost:5000/wishlist/${id}`, {
             method: 'POST'
@@ -23,11 +24,14 @@ const CarCard = ({ car, setCarData }) => {
         <div className="card bg-base-100 shadow-xl">
             <figure><img src={picture} alt="Shoes" className='w-full h-72' /></figure>
             <div className="card-body">
-                <p className='italic'>{categoryName}</p>
+                <p className='italic'>{postDate}</p>
                 <h2 className="card-title"><span className='font-bold'>Car</span> : <span className='uppercase'>{name}</span></h2>
                 <div>
-                    <p className=''><span className='font-bold'>Seller Name :</span> <span className='italic'>{salerName}</span> </p>
+                    <p className=''><span className='font-bold'>Seller Name :</span> <span className='italic'>{sellerName}</span> </p>
                     <p><span className='font-bold'>Location : </span><span>{location}</span></p>
+                    <p><span className='font-bold'>Year of Use : </span><span>{yearsOfUse}</span></p>
+                    <p><span className='font-bold'>Resale Price : </span><span>{resalePrice}</span></p>
+                    <p><span className='font-bold'>Original Price : </span><span>{originalPrice}</span></p>
                     {
                         user?.uid ? <>
                             <div className="mt-5">
