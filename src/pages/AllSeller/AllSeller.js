@@ -8,7 +8,7 @@ const AllSeller = () => {
 
     const { data: userInfo, isLoading, refetch } = useQuery({
         queryKey: [''],
-        queryFn: () => fetch('http://localhost:5000/allSeller')
+        queryFn: () => fetch('https://luxary-hunt-server.vercel.app/allSeller')
             .then(res => res.json())
     })
     if (isLoading) {

@@ -27,7 +27,7 @@ const BookModal = ({ carData, setCarData }) => {
             payment: 'pay'
 
         }
-        fetch('http://localhost:5000/allBooking', {
+        fetch('https://luxary-hunt-server.vercel.app/allBooking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

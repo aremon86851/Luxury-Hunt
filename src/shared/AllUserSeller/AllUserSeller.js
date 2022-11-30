@@ -10,7 +10,7 @@ const AllUserSeller = ({ i, info, refetch }) => {
         handleDeleteRoute('allUser', refetch, id)
     }
     const handleVerify = id => {
-        fetch(`http://localhost:5000/verifySeller?email=${userEmail}`, {
+        fetch(`https://luxary-hunt-server.vercel.app/verifySeller?email=${userEmail}`, {
             method: 'POST'
         })
             .then(res => res.json())

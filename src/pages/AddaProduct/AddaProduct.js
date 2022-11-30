@@ -15,11 +15,12 @@ const AddaProduct = () => {
 
 
     const userName = user?.displayName;
+    console.log(userName)
     const userEmail = user?.email;
 
     const { data: categories, isLoading } = useQuery({
         queryKey: ['category'],
-        queryFn: () => fetch('http://localhost:5000/carCategory')
+        queryFn: () => fetch('https://luxary-hunt-server.vercel.app/carCategory')
             .then(res => res.json())
     })
 
@@ -55,7 +56,7 @@ const AddaProduct = () => {
                     description: data.description,
                     categoryId: data.categoryId
                 }
-                fetch('http://localhost:5000/usedCar', {
+                fetch('https://luxary-hunt-server.vercel.app/usedCar', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

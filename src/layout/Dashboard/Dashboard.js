@@ -9,7 +9,7 @@ const Dashboard = () => {
     const { user } = useContext(AuthProvider)
     const { data: roleUser, isLoading } = useQuery({
         queryKey: ['', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/role?email=${user?.email}`)
+        queryFn: () => fetch(`https://luxary-hunt-server.vercel.app/role?email=${user?.email}`)
             .then(res => res.json())
     })
     if (isLoading) {

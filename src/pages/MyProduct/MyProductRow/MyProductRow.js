@@ -5,7 +5,7 @@ import { handleDeleteRoute } from '../../../utilities/handleDeleteRoute';
 const MyProductRow = ({ product, i, refetch }) => {
     const { picture, name, resalePrice, _id } = product;
     const handleAdvertise = id => {
-        fetch(`http://localhost:5000/advertiseItem/${_id}`, {
+        fetch(`https://luxary-hunt-server.vercel.app/advertiseItem/${_id}`, {
             method: 'POST'
         })
             .then(res => res.json())

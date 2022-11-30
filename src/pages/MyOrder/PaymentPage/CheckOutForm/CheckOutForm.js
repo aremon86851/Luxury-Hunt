@@ -17,7 +17,7 @@ const CheckOutForm = ({ data }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/createpaymentintent", {
+        fetch("https://luxary-hunt-server.vercel.app/createpaymentintent", {
             method: "POST",
             headers: {
                 "content-Type": "application/json"
@@ -77,7 +77,7 @@ const CheckOutForm = ({ data }) => {
                 bookedCarId: bookedCarId,
                 transactionId: paymentIntent.id,
             }
-            fetch('http://localhost:5000/paymentSuccess', {
+            fetch('https://luxary-hunt-server.vercel.app/paymentSuccess', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -88,7 +88,7 @@ const CheckOutForm = ({ data }) => {
                 .then(data => {
                     console.log(data)
                     if (data.acknowledged) {
-                        fetch(`http://localhost:5000/paymentSuccess/${bookedCarId}`, {
+                        fetch(`https://luxary-hunt-server.vercel.app/paymentSuccess/${bookedCarId}`, {
                             method: 'DELETE'
                         })
                             .then(res => res.json())

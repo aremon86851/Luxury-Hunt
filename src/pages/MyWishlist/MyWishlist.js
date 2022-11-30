@@ -9,7 +9,7 @@ const MyWishlist = () => {
     const [handlePaymentId, setHandlePaymentId] = useState(null)
     const { data: wishlistItems, isLoading } = useQuery({
         queryKey: ['wishlistItems'],
-        queryFn: () => fetch('http://localhost:5000/wishlistItem')
+        queryFn: () => fetch('https://luxary-hunt-server.vercel.app/wishlistItem')
             .then(res => res.json())
     })
     if (isLoading) {

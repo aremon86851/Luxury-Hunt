@@ -1,7 +1,7 @@
 import toast from "react-hot-toast"
 
 export const handleDeleteRoute = (route, refetch, id) => {
-    fetch(`http://localhost:5000/${route}/${id}`, {
+    fetch(`https://luxary-hunt-server.vercel.app/${route}/${id}`, {
         method: 'DELETE'
     })
         .then(res => res.json())

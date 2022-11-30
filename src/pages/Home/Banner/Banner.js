@@ -8,7 +8,7 @@ const Banner = () => {
         <div className="hero" style={{ backgroundImage: `url("${bannerBg}")`, backgroundSize: 'cover', height: '600px' }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
-                <div className='grid grid-cols-2 gap-10 '>
+                <div className='grid md:grid-cols-2 gap-10 '>
                     <div className='flex items-center'>
                         <div className="text-left">
                             <h1 className="mb-5 text-7xl font-bold text-white">Luxury <span className='text-red-600'>Hunt</span></h1>
@@ -16,7 +16,7 @@ const Banner = () => {
                             <button className="btn btn-primary px-7 text-white">Buy Car</button>
                         </div>
                     </div>
-                    <div className="max-w-xl">
+                    <div className="max-w-xl hidden md:block">
                         <SignUp></SignUp>
                     </div>
                 </div>

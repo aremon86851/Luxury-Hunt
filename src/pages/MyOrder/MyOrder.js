@@ -12,7 +12,7 @@ const MyOrder = () => {
     const { user } = useContext(AuthProvider);
     const { data: orders, isLoading } = useQuery({
         queryKey: ['orders', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/myorder?email=${user?.email}`)
+        queryFn: () => fetch(`https://luxary-hunt-server.vercel.app/myorder?email=${user?.email}`)
             .then(res => res.json())
     })
     if (isLoading) {

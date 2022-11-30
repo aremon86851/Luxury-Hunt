@@ -2,7 +2,7 @@ import toast from "react-hot-toast"
 
 const userCollectionFetch = userData => {
 
-    fetch('http://localhost:5000/userCollection', {
+    fetch('https://luxary-hunt-server.vercel.app/userCollection', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

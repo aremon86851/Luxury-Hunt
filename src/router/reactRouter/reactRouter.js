@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryCar></CategoryCar></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://luxary-hunt-server.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <PaymentPage></PaymentPage>,
-                loader: ({ params }) => fetch(`http://localhost:5000/payment/${params.id}`)
+                loader: ({ params }) => fetch(`https://luxary-hunt-server.vercel.app/payment/${params.id}`)
             },
             {
                 path: '/dashboard/allSeller',

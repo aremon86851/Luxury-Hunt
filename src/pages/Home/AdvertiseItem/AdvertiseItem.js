@@ -8,7 +8,7 @@ const AdvertiseItem = () => {
     const [carData, setCarData] = useState(null)
     const { data: advertiseItems, isLoading } = useQuery({
         queryKey: ['advertiseItems'],
-        queryFn: () => fetch('http://localhost:5000/advertiseItem')
+        queryFn: () => fetch('https://luxary-hunt-server.vercel.app/advertiseItem')
             .then(res => res.json())
     })
     if (isLoading) {
@@ -19,9 +19,9 @@ const AdvertiseItem = () => {
         <>
             {
                 advertiseItems.length > 0 && <>
-                    <div className='my-10 mx-10'>
+                    <div className='my-10 mx-2 md:mx-10'>
                         <h1 className='text-3xl font-bold mt-7 hover:ease-out text-black uppercase'>Advertise</h1>
-                        <div className='grid grid-cols-3 gap-10 my-10'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10'>
                             {
                                 advertiseItems.map(item => <CarCard key={item._id} car={item} setCarData={setCarData}></CarCard>)
                             }

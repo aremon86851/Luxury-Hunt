@@ -11,8 +11,7 @@ const handleSignUp = (name, email, password, picture, userRole, createUser, user
 
             const formData = new FormData();
             formData.append('image', picture)
-            axios({
-                url: `https://api.imgbb.com/1/upload?key=${imgbbApi}`,
+            fetch(`https://api.imgbb.com/1/upload?key=${imgbbApi}`, {
                 method: 'POST',
                 body: formData
             })

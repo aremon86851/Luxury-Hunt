@@ -21,6 +21,11 @@ const Header = () => {
         {
             user?.uid ? <>
                 <li><Link to="/dashboard">Dashboard</Link></li>
+                <li>
+                    {
+                        user?.photoURL ? <img src={user?.photoURL} alt="" srcset="" className='w-16 rounded-lg' /> : <img src="https://i.ibb.co/44vKrwv/istockphoto-1300845620-612x612.jpg" alt="" srcset="" />
+                    }
+                </li>
                 <li><button className='btn text-white' onClick={handleLogOut}>Logout</button></li>
             </> : <li><Link to="/login">Login</Link></li>
         }

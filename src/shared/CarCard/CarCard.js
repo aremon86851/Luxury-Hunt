@@ -9,7 +9,7 @@ const CarCard = ({ car, setCarData }) => {
     const { postDate, location, name, resalePrice, picture, sellerName, _id, originalPrice, yearsOfUse, status } = car;
     console.log(car)
     const handleWishlist = id => {
-        fetch(`http://localhost:5000/wishlist/${id}`, {
+        fetch(`https://luxary-hunt-server.vercel.app/wishlist/${id}`, {
             method: 'POST'
         })
             .then(res => res.json())

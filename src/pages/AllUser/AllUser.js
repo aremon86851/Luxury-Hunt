@@ -6,7 +6,7 @@ import Loading from '../../shared/Loading/Loading';
 const AllUser = () => {
     const { data: allUsers, isLoading, refetch } = useQuery({
         queryKey: [''],
-        queryFn: () => fetch('http://localhost:5000/allUser')
+        queryFn: () => fetch('https://luxary-hunt-server.vercel.app/allUser')
             .then(res => res.json())
     })
     if (isLoading) {

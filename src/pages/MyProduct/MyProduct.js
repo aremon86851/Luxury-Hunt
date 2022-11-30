@@ -8,7 +8,7 @@ const MyProduct = () => {
     const { user } = useContext(AuthProvider)
     const { data: myProdcuts, isLoading, refetch } = useQuery({
         queryKey: ['myProdcuts', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/sellerProduct?email=${user?.email}`)
+        queryFn: () => fetch(`https://luxary-hunt-server.vercel.app/sellerProduct?email=${user?.email}`)
             .then(res => res.json())
     })
 
