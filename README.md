@@ -12,5 +12,5 @@
     <li>A admin can all user and all buyer</li>
 </ul>
 <h3>Admin info</h3>
-<p>adminEmail: <luxary@hunt.com></p>
-<p>adminPassword: <luxaryhunt></p>
+<p>adminEmail: luxary@hunt.com</p>
+<p>adminPassword: luxaryhunt</p>
