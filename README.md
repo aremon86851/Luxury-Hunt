@@ -11,6 +11,6 @@
     <li>if you are a buyer then you can see your order, and pay for that item</li>
     <li>A admin can all user and all buyer</li>
 </ul>
-<h3>Admin info</h3>
+<h3>user's credentials</h3>
 <p>adminEmail: luxary@hunt.com</p>
 <p>adminPassword: luxaryhunt</p>
