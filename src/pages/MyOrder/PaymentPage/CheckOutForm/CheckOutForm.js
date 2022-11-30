@@ -9,7 +9,7 @@ const CheckOutForm = ({ data }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
-    const { carPrice, email, name, _id } = data
+    const { carPrice, email, name, _id, bookedCarId } = data
 
     const price = {
         carPrice: carPrice
@@ -74,7 +74,7 @@ const CheckOutForm = ({ data }) => {
                 name: name,
                 email: email,
                 price: carPrice,
-                carId: _id,
+                bookedCarId: bookedCarId,
                 transactionId: paymentIntent.id,
             }
             fetch('http://localhost:5000/paymentSuccess', {
@@ -88,6 +88,11 @@ const CheckOutForm = ({ data }) => {
                 .then(data => {
                     console.log(data)
                     if (data.acknowledged) {
+                        fetch(`http://localhost:5000/paymentSuccess/${bookedCarId}`, {
+                            method: 'DELETE'
+                        })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
                         toast.success('Payment successfully !')
                         navigate('/')
                     }

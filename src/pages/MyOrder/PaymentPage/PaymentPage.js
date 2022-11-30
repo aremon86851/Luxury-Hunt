@@ -11,7 +11,8 @@ const stripePromise = loadStripe(`pk_test_51M91mJJ6IELq2rYrU75F3tby1AHcEVgz9ylMR
 const PaymentPage = () => {
     const data = useLoaderData()
     console.log(stripePromise)
-    const { carName, carPrice } = data
+    const { carName, carPrice, } = data
+    console.log(data)
 
     return (
         <div>

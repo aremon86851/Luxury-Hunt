@@ -1,3 +1,4 @@
+import axios from "axios";
 import toast from "react-hot-toast";
 import userCollectionFetch from "./userCollectionFetch";
 
@@ -10,7 +11,8 @@ const handleSignUp = (name, email, password, picture, userRole, createUser, user
 
             const formData = new FormData();
             formData.append('image', picture)
-            fetch(`https://api.imgbb.com/1/upload?key=${imgbbApi}`, {
+            axios({
+                url: `https://api.imgbb.com/1/upload?key=${imgbbApi}`,
                 method: 'POST',
                 body: formData
             })
@@ -28,7 +30,8 @@ const handleSignUp = (name, email, password, picture, userRole, createUser, user
                         userName: name,
                         userEmail: email,
                         profile: imageUrl,
-                        role: userRole
+                        role: userRole,
+                        status: 'unverified'
                     }
                     userCollectionFetch(userInfo)
                 })

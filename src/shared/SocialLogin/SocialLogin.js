@@ -13,7 +13,8 @@ const SocialLogin = () => {
                     userName: user.displayName,
                     userEmail: user.email,
                     profile: user.photoURL,
-                    role: "Buyer"
+                    role: "Buyer",
+                    status: ''
                 }
                 userCollectionFetch(userInfo)
             })

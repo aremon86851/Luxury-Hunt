@@ -16,10 +16,12 @@ import PaymentPage from "../../pages/MyOrder/PaymentPage/PaymentPage";
 import AllSeller from "../../pages/AllSeller/AllSeller";
 import AllUser from "../../pages/AllUser/AllUser";
 import Blog from "../../pages/Blog/Blog";
+import ErrorPage from "../../shared/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <ErrorPage></ErrorPage>,
         element: <Main></Main>,
         children: [
             {
@@ -51,6 +53,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
+        errorElement: <ErrorPage></ErrorPage>,
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {

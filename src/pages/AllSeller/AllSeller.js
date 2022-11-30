@@ -24,7 +24,7 @@ const AllSeller = () => {
                             <th>Name</th>
                             <th>E-mail</th>
                             <th>Delete</th>
-                            <th>Verify </th>
+                            <th>Status </th>
                         </tr>
                     </thead>
                     <tbody>
