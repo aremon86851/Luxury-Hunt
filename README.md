@@ -1,4 +1,4 @@
-<h1>Luxary Hunt</h1>
+<h1>Welcome to Luxary Hunt</h1>
 <h2>Live link website : <a href="https://luxury-hunt.web.app/">https://luxury-hunt.web.app/</a></h2>
 <ul>
     <li>in this web app you can add your car which you want to sale</li>
